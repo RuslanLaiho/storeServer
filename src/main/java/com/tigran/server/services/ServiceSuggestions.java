@@ -19,6 +19,7 @@ public class ServiceSuggestions {
     @Autowired
     StorageService storageService;
 
+
     public List<Suggestions> get() {
         return new ArrayList<>(suggestionsMap.values());
     }
