@@ -24,6 +24,7 @@ public class ServiceTopLinks {
     public void TopLinksUpdateFromDto() {
         List<TopLinks> list = topLinksDAO.readAll();
         for (TopLinks topLinks:list) {
+            storageService.add(topLinks.getImageUuid());
             topLinksMap.put(topLinks.getId(), topLinks);
         }
     }

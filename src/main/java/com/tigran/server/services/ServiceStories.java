@@ -27,6 +27,8 @@ public class ServiceStories {
     public void StoriesUpdateFromDto() {
         List<Stories> list = storiesDAO.read();
         for (Stories stories : list) {
+            storageService.add(stories.getImageUuid());
+            storageService.add(stories.getContentUuid());
             storiesMap.put(stories.getId(), stories);
         }
     }

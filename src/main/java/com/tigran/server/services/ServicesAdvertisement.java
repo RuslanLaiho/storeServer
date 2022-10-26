@@ -30,6 +30,7 @@ public class ServicesAdvertisement {
         List<Advertisement> advertisements = advertisementDAO.read();
         if(advertisements.size() > 0){
             advertisement = advertisements.get(0);
+            storageService.add(advertisement.getImageUuid());
         }
     }
 
