@@ -32,10 +32,10 @@ public class FileUploadController {
             }
 
             String uuid = UUID.randomUUID().toString();
-            String resultFileName = uuid + "." + file.getOriginalFilename();
+            String resultFileName = uuid;
 
             file.transferTo(new File(imagePath + "/" +resultFileName));
-            storageService.add(uuid, resultFileName);
+            storageService.add(uuid);
 
             return "Sucsesful";
         }
