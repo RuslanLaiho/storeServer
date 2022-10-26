@@ -7,6 +7,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -18,9 +20,9 @@ public class StorageService {
     @Value("${image.path}")
     String imagePath;
 
-    public void add(String uuid, String fileName){
+    public void add(String uuid){
         Image image = new Image();
-        image.setFileName(fileName);
+        image.setFileName(uuid);
         image.setUuid(uuid);
         imageMap.put(uuid, image);
     }
@@ -35,9 +37,9 @@ public class StorageService {
 
     public String saveImg(MultipartFile image) throws IOException {
         String uuid = UUID.randomUUID().toString();
-        String resultFileName = uuid + "." + image.getOriginalFilename();
-        image.transferTo(new File(imagePath + "/" + resultFileName));
-        add(uuid, resultFileName);
+        String insPath = imagePath  + "/" + uuid;
+        Files.write(Paths.get(insPath), image.getBytes());
+        add(uuid);
         return uuid;
     }
 

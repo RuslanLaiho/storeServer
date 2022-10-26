@@ -27,6 +27,7 @@ public class ServiceSuggestions {
     public void SuggestionsUpdateFromDto() {
         List<Suggestions> list = suggestionsDAOImpl.read();
         for (Suggestions topLinks : list) {
+            storageService.add(topLinks.getImageUuid());
             suggestionsMap.put(topLinks.getId(), topLinks);
         }
     }

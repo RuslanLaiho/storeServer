@@ -28,6 +28,8 @@ public class ServiceTopSuggestion {
     public void TopSuggestionUpdateFromDto() {
         List<TopSuggestion> list = topSuggestionDAO.read();
         for (TopSuggestion topSuggestion:list) {
+            storageService.add(topSuggestion.getImageUuid());
+            storageService.add(topSuggestion.getContentUuid());
             topSuggestionMap.put(topSuggestion.getId(), topSuggestion);
         }
     }
